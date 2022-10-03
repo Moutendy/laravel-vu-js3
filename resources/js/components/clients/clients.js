@@ -12,20 +12,22 @@ export default function useClients() {
     const errors = ref('')
     const router = useRouter()
 
-    const getClients = async () => {
+    const getClients = async() => {
+
         let response = await axios.get('/api/clients')
         clients.value = response.data.data
     }
 
-    const showClient = async (id) => {
+    const showClient = async(id) => {
         let response = await axios.get(`/api/clients/${id}`)
         client.value = response.data.data
     }
 
-    const storeClient = async (data) => {
+    const storeClient = async(data) => {
         errors.value = ''
         try {
             await axios.post('/api/clients', data)
+
             await router.push({
                 path: '/dashboard',
             })
@@ -39,7 +41,7 @@ export default function useClients() {
 
     }
 
-    const updateClient = async (id) => {
+    const updateClient = async(id) => {
         errors.value = ''
         try {
             await axios.patch(`/api/clients/${id}`, client.value)
@@ -55,13 +57,14 @@ export default function useClients() {
             }
         }
     }
-    const destroyClient = async (id) => {
+    const destroyClient = async(id) => {
         await axios.delete(`/api/clients/${id}`)
     }
     return {
         errors,
         client,
         clients,
+
         getClients,
         storeClient,
         showClient,

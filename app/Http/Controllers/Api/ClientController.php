@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\MessageNotification;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
@@ -18,6 +19,7 @@ class ClientController extends Controller
     public function index()
     {
         //
+        // event(new MessageNotification('this is our first broadcast me'));
         return ClientResource::collection(Client::all());
     }
 
@@ -30,6 +32,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         //
+        event(new MessageNotification('this is our first broadcast me'));
         $client = Client::create($request->validated());
 
         return new ClientResource($client);
