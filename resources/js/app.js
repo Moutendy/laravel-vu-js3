@@ -19,5 +19,5 @@ createApp({
 
 Echo.channel('notification').listen('MessageNotification', (e) => {
     alert(e);
-    document.getElementById('notif').innerHTML = e.messages;
+    document.getElementById('app').innerHTML = 'e.messages';
 });
