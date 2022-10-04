@@ -1,11 +1,12 @@
 <template>
-    <div id="app"></div>
+
 <div class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
     <router-link :to="{ name: 'client.create' }" class="text-sm font-medium">Create Client</router-link>
 </div>
 
 
     <div class="overflow-hidden overflow-x-auto min-w-full align-middle sm:rounded-md">
+        {{ notifications.message }}
         <table class="min-w-full border divide-y divide-gray-200">
             <thead>
             <tr>
@@ -62,7 +63,7 @@
 
     export default {
         setup() {
-            const { clients, getClients ,destroyClient} = useClient()
+            const { notifications,clients, getClients ,destroyClient} = useClient()
 
             onMounted(getClients)
 
@@ -77,7 +78,7 @@
 
             return {
                 clients,
-
+                notifications,
                 deleteClient
             }
         }

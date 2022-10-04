@@ -8,7 +8,7 @@ import {
 export default function useClients() {
     const client = ref([])
     const clients = ref([])
-
+    var notifications = []
     const errors = ref('')
     const router = useRouter()
 
@@ -16,6 +16,11 @@ export default function useClients() {
 
         let response = await axios.get('/api/clients')
         clients.value = response.data.data
+        Echo.channel('notification').listen('MessageNotification', (e) => {
+            // alert(e.message)
+            notifications = e
+            alert(notifications.message)
+        });
     }
 
     const showClient = async(id) => {
@@ -64,7 +69,7 @@ export default function useClients() {
         errors,
         client,
         clients,
-
+        notifications,
         getClients,
         storeClient,
         showClient,

@@ -19,7 +19,7 @@ class ClientController extends Controller
     public function index()
     {
         //
-        // event(new MessageNotification('this is our first broadcast me'));
+        event(new MessageNotification('this is our first broadcast me'));
         return ClientResource::collection(Client::all());
     }
 

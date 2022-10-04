@@ -16,8 +16,3 @@ createApp({
         ClientIndex,
     }
 }).use(router).mount('#app')
-
-Echo.channel('notification').listen('MessageNotification', (e) => {
-    alert(e);
-    document.getElementById('app').innerHTML = 'e.messages';
-});
